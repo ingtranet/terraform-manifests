@@ -13,10 +13,11 @@ resource "vultr_instance" "gateway" {
   hostname = "gateway"
   label = "gateway"
   private_network_ids = [
-    data.vultr_private_network.k8s_tokyo.id,
-    vultr_private_network.intranet_vultr.id
+    vultr_private_network.intranet_vultr.id,
+    data.vultr_private_network.k8s_tokyo.id
   ]
   ssh_key_ids = [
     "6c800491-1f42-4313-830f-1b34204a625f"
   ]
+  firewall_group_id = vultr_firewall_group.for_gateway.id
 }
