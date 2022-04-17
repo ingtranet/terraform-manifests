@@ -19,11 +19,11 @@ resource "aws_ecs_task_definition" "pyrami_twitter_stream" {
     "memory": 512,
     "essential": true,
     "environment": [
-      {"name": "VERSION", "value": "8"},
+      {"name": "VERSION", "value": "13"},
       {"name": "PYRAMI_APP", "value": "twitter_stream"},
       {"name": "PYRAMI_BEARER_TOKEN", "value": "${var.twitter_bearer_token}"},
       {"name": "PYRAMI_KINESIS_STREAM", "value": "${aws_kinesis_stream.mirror_to_mdc.name}"},
-      {"name": "PYRAMI_KAFKA_TOPIC", "value": "data.json.twitter-stream.1"}
+      {"name": "PYRAMI_KAFKA_TOPIC", "value": "data.twitter.sampled-stream.1"}
     ],
     "logConfiguration": {
       "logDriver": "awslogs",
