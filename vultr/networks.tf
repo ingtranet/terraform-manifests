@@ -1,3 +1,4 @@
+/*
 data "vultr_private_network" "k8s_tokyo" {
   filter {
     name = "description"
@@ -7,10 +8,11 @@ data "vultr_private_network" "k8s_tokyo" {
     vultr_kubernetes.tokyo
   ]
 }
+*/
 
-resource "vultr_private_network" "intranet_vultr" {
-    description = "intranet_vultr"
-    region = "nrt"
-    v4_subnet  = "172.24.0.0"
-    v4_subnet_mask = 16
+resource "vultr_vpc" "icn_default" {
+    description = "icn_default"
+    region = "icn"
+    v4_subnet  = "100.120.0.0"
+    v4_subnet_mask = 22
 }

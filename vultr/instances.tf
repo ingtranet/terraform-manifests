@@ -2,22 +2,23 @@ variable "os_ids" {
   type = map(number)
   default = {
     "Ubuntu2004" = 387
+    "Ubuntu2204" = 1743
+    "Rocky9" = 1869
   }
 }
 
 
 resource "vultr_instance" "gateway" {
   plan   = "vc2-1c-1gb"
-  region = "nrt"
-  os_id  = var.os_ids.Ubuntu2004
+  region = "icn"
+  os_id  = var.os_ids.Rocky9
   hostname = "gateway"
   label = "gateway"
-  private_network_ids = [
-    vultr_private_network.intranet_vultr.id,
-    data.vultr_private_network.k8s_tokyo.id
+  vpc_ids = [
+    vultr_vpc.icn_default.id,
   ]
   ssh_key_ids = [
-    "6c800491-1f42-4313-830f-1b34204a625f"
+    vultr_ssh_key.default.id
   ]
-  firewall_group_id = vultr_firewall_group.for_gateway.id
+  firewall_group_id = vultr_firewall_group.gateway.id
 }
