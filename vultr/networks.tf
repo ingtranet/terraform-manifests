@@ -13,6 +13,6 @@ data "vultr_private_network" "k8s_tokyo" {
 resource "vultr_vpc" "icn_default" {
     description = "icn_default"
     region = "icn"
-    v4_subnet  = "100.120.0.0"
-    v4_subnet_mask = 22
+    v4_subnet  = "100.124.0.0"
+    v4_subnet_mask = 24
 }
